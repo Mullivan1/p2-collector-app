@@ -1,3 +1,11 @@
+<?php
+require_once 'BookDAO.php';
+
+$bookDAO = new BookDAO();
+
+$books = $bookDAO->fetchAll();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +20,14 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/styles.css">
 
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+            integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    />
+
     <link rel="icon" href="images/favicon.png" sizes="192x192">
     <link rel="shortcut icon" href="images/favicon.png">
     <link rel="apple-touch-icon" href="images/favicon.png">
@@ -23,45 +39,32 @@
 
 <h1>Book Collection</h1>
 
-<!--Make the below into a loop using the DBO item-->
 
 <div class="collection">
-    <div class="book">
-        <img class="book-image" src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1654371463i/18144590.jpg" alt="Book Cover for //name">
-        <div class="book-head-container">
-            <p class="book-head">Book 1 title</p>
-            <p class="book-head align-right">Year</p>
-            <p class="book-head">Author</p>
-            <p class="book-head align-right">Genre</p>
-        </div>
-        <hr class="book-hr">
-        <div class="book-details-container">
-            <p class="book-detail">Comp%</p>
-            <p class="book-detail">My Rating</p>
-            <p href="link" class="book-detail">Link</p>
-        </div>
-    </div>
-
-    <div class="book">
-        <img class="book-image" src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1631501298i/1898.jpg" alt="Book Cover for //name">
-        <div class="book-head-container">
-            <p class="book-head">Book 2 title</p>
-            <p class="book-head align-right">Year</p>
-            <p class="book-head">Author</p>
-            <p class="book-head align-right">Genre</p>
-        </div>
-        <hr class="book-hr">
-        <div class="book-details-container">
-            <p class="book-detail">Comp%</p>
-            <p class="book-detail">My Rating</p>
-            <p href="link" class="book-detail">Link</p>
-        </div>
-    </div>
-
-
 <?php
-
+    $html = '';
+    foreach ($books as $book) {
+        $html = '<div class="book">'
+            . '<img class="book-image" src="' . $book->getCoverLink() . '" alt="Book Cover for ' . $book->getTitle() . '">'
+            . '<div class="book-head-container">'
+            . '<p class="book-head title" >' . $book->getTitle() . '</p>'
+            . '<p class="book-head align-right" >' . $book->getYear() . '</p>'
+            . '<p class="book-head" >' . $book->getAuthor() . '</p>'
+            . '<p class="book-head align-right" >' . $book->getGenre() . '</p>'
+            . '</div >'
+            . '<hr class="book-hr" >'
+            . '<div class="book-details-container" >'
+            . '<p class="book-detail" >Progress: ' . $book->getProgressPercent() . '%</p>'
+            . '<p class="book-detail" >Rating: ' . $book->getRating() . '/10</p>'
+            . '<a href="' . $book->getGrLink() . ' "target="_blank" class="book-detail">More... <i class="fa-solid fa-book"></i></a>'
+            . '</div>'
+            . '</div>';
+        echo $html;
+    }
 ?>
+
+
+</div>
 
 </body>
 </html>
