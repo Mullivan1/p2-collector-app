@@ -1,7 +1,10 @@
+h1 {
+    text-align: center;
+}
 
 .collection {
     width: 95%;
-    margin: 0 auto;
+    margin: 2rem auto;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -17,6 +20,7 @@
 
 .book {
     width: 22rem;
+    height: auto;
     background-color: #e8dfc2;
     border: 0.2rem solid #000000;
     display: grid;
@@ -34,12 +38,12 @@
     width: 90%;
     margin: 0 auto;
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: repeat(2, auto);
     grid-template-columns: 3fr 1fr;
 }
 
 .book-details-container {
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -56,4 +60,18 @@
 
 .book-detail {
     text-align: center;
+}
+
+.title {
+    font-weight: bold;
+}
+
+a {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    color: #000000;
+}
 }
