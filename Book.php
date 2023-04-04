@@ -63,9 +63,9 @@ class Book
     }
 
     /**
-     * @param string $name
+     * @param string $title
      */
-    public function setTitle(string $name): void
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
