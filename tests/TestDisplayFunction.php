@@ -8,6 +8,6 @@ class TestDisplayFunction extends TestCase
 {
     public function testCreateString()
     {
-
+        $book = new Book('TitleTest', 'AuthorTest', 'GenreTest', 2023);
     }
 }

@@ -15,9 +15,22 @@ function createTile ($book): string
         . '</div >'
         . '<hr class="book-hr" >'
         . '<div class="book-details-container" >'
-        . '<p class="book-detail" >Progress: ' . $book->getProgressPercent() . '%</p>'
-        . '<p class="book-detail" >Rating: ' . $book->getRating() . '/10</p>'
-        . '<a href="' . $book->getGrLink() . ' "target="_blank" class="book-detail">More... <i class="fa-solid fa-book"></i></a>'
+        . hideIfNull($book->getProgressPercent(),
+            '<p class="book-detail" >Progress: ' . $book->getProgressPercent() . '%</p>')
+        . hideIFNull($book->getRating(), '<p class="book-detail" >Rating: ' . $book->getRating() . '/10</p>')
+        . hideIfNull($book->getGrLink(),
+            '<a href="'.$book->getGrLink()
+            .' "target="_blank" class="book-detail"><i class="fa-brands fa-goodreads"></i></a>')
         . '</div>'
         . '</div>';
+}
+
+/**
+ * @param $var - Book object
+ * @param $string - HTML string
+ * @return void
+ */
+function hideIfNull($var, $string): string
+{
+    return ($var=null) ? ' ' : $string;
 }
