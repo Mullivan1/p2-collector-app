@@ -1,1 +1,73 @@
+h1 {
+    text-align: center;
+}
 
+.collection {
+    width: 95%;
+    margin: 2rem auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-around;
+}
+
+@media (max-width: 600px) {
+    .collection {
+        justify-content: center;
+    }
+}
+
+.book {
+    width: 22rem;
+    background-color: #e8dfc2;
+    border: 0.2rem solid #000000;
+    display: grid;
+    grid-template-rows: 1fr repeat(3, auto);
+}
+
+.book-image {
+    height: 25rem;
+    width: auto;
+    margin: 1rem auto;
+}
+
+.book-head-container {
+    width: 90%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    grid-template-columns: 3fr 1fr;
+}
+
+.book-details-container {
+    width: 95%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.align-right {
+    text-align: end;
+}
+
+.book-hr {
+    width: 60%;
+}
+
+.book-detail {
+    text-align: center;
+}
+
+.title {
+    font-weight: bold;
+}
+
+a {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    color: #000000;
+}
