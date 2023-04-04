@@ -42,10 +42,8 @@ $books = $bookDAO->fetchAll();
 
 <div class="collection">
 <?php
-    $html = '';
     foreach ($books as $book) {
-        $html = createTile($book);
-        echo $html;
+        echo createTile($book);
     }
 ?>
 
