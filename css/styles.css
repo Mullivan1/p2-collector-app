@@ -6,7 +6,6 @@ h1 {
     width: 95%;
     margin: 2rem auto;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     gap: 2rem;
     justify-content: space-around;
@@ -20,12 +19,10 @@ h1 {
 
 .book {
     width: 22rem;
-    height: auto;
     background-color: #e8dfc2;
     border: 0.2rem solid #000000;
     display: grid;
     grid-template-rows: 1fr repeat(3, auto);
-    grid-template-columns: 1fr;
 }
 
 .book-image {

@@ -26,11 +26,9 @@ class BookDAO
 
         $books = [];
         foreach ($rows as $row) {
-            $book = new Book($row['title'], $row['name'], $row['genre'], $row['year'],
+            $books[] = new Book($row['title'], $row['name'], $row['genre'], $row['year'],
                 $row['progressperc'], $row['rating10'], $row['coverlink'], $row['gr-link']);
-            $books[] = $book;
         }
-
         return $books;
     }
 

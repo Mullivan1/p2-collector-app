@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.5-10.11.2-MariaDB-1:10.11.2+maria~ubu2204)
 # Database: project2
-# Generation Time: 2023-04-03 09:33:08 +0000
+# Generation Time: 2023-04-04 09:24:10 +0000
 # ************************************************************
 
 
@@ -22,11 +22,10 @@ SET NAMES utf8mb4;
 
 # Dump of table authors
 # ------------------------------------------------------------
-
 CREATE OR REPLACE DATABASE ;
 USE ;
 
-DROP TABLE IF EXISTS project2;
+DROP TABLE IF EXISTS `authors`;
 
 CREATE TABLE `authors` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -73,7 +72,7 @@ CREATE TABLE `books` (
   KEY `authors` (`author`),
   KEY `genres` (`genre`),
   CONSTRAINT `authors` FOREIGN KEY (`author`) REFERENCES `authors` (`id`),
-  CONSTRAINT `genres` FOREIGN KEY (`genre`) REFERENCES `genre` (`id`)
+  CONSTRAINT `genres` FOREIGN KEY (`genre`) REFERENCES `genres` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 LOCK TABLES `books` WRITE;
@@ -97,24 +96,26 @@ VALUES
 UNLOCK TABLES;
 
 
-# Dump of table genre
+# Dump of table genres
 # ------------------------------------------------------------
 
-CREATE TABLE `genre` (
+DROP TABLE IF EXISTS `genres`;
+
+CREATE TABLE `genres` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `genre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-LOCK TABLES `genre` WRITE;
-/*!40000 ALTER TABLE `genre` DISABLE KEYS */;
+LOCK TABLES `genres` WRITE;
+/*!40000 ALTER TABLE `genres` DISABLE KEYS */;
 
-INSERT INTO `genre` (`id`, `genre`)
+INSERT INTO `genres` (`id`, `genre`)
 VALUES
 	(1,'Fiction'),
 	(2,'Non-fiction');
 
-/*!40000 ALTER TABLE `genre` ENABLE KEYS */;
+/*!40000 ALTER TABLE `genres` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
