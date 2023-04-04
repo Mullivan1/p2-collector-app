@@ -181,6 +181,4 @@ class Book
     {
         $this->grLink = $grLink;
     }
-
-
 }
