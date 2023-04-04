@@ -1,6 +1,6 @@
 <?php
 /**
- * @param $book - Takes a book object
+ * @param $book - Takes a book object using Book
  * @return string - Returns string to create a tile with book information
  */
 function createTile ($book): string
@@ -28,9 +28,9 @@ function createTile ($book): string
 /**
  * @param $var - Book object
  * @param $string - HTML string
- * @return void
+ * @return string
  */
-function hideIfNull($var, $string): string
+function hideIfNull($obj, $string): string
 {
-    return ($var=null) ? ' ' : $string;
+    return ($obj == null) ? '<p class="book-detail"></p>' : $string;
 }

@@ -47,10 +47,15 @@ $books = $bookDAO->fetchAll();
         $html = createTile($book);
         echo $html;
     }
+
+$book = new Book('TitleTest', 'AuthorTest', 'GenreTest', 2023);
+    echo $string = createTile($book);
 ?>
 
 
 </div>
+
+
 
 </body>
 </html>

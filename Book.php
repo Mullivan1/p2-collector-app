@@ -88,7 +88,7 @@ class Book
         $this->year = $year;
     }
 
-    public function getProgressPercent(): float
+    public function getProgressPercent(): ?float
     {
         return $this->progressPercent;
     }
@@ -98,7 +98,7 @@ class Book
         $this->progressPercent = $progressPercent;
     }
 
-    public function getRating(): float
+    public function getRating(): ?float
     {
         return $this->rating;
     }
@@ -108,7 +108,7 @@ class Book
         $this->rating = $rating;
     }
 
-    public function getCoverLink(): string
+    public function getCoverLink(): ?string
     {
         return $this->coverLink;
     }
@@ -118,7 +118,7 @@ class Book
         $this->coverLink = $coverLink;
     }
 
-    public function getGrLink(): string
+    public function getGrLink(): ?string
     {
         return $this->grLink;
     }
