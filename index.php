@@ -60,14 +60,12 @@ $books = $bookDAO->fetchAll();
         echo createTile($book);
     }
 ?>
-    <div class="book">
+    <div class="book" id="addition">
         <form action="index.php" method="post">
-            <h2>Input a new book!</h2>
+            <h2>Add a new book!</h2>
             <label for="title">Title: </label>
             <input type="text" id="title" name="title"><br>
-            <!--            Add author selector -->
             <label for="author">Author: </label>
-<!--            <input list="author">-->
             <select name="author" id="author">
             <?php
             $authors = $bookDAO->listOfAuthorsAndId();
@@ -75,7 +73,6 @@ $books = $bookDAO->fetchAll();
                 echo '<option value="'.$author['id'].'">'.$author['name'].'</option>';
             }
             ?>
-<!--            <input type="text" id="author" name="author">-->
             </select>
             <br>
             <label for="year">Year: </label>
@@ -94,12 +91,15 @@ $books = $bookDAO->fetchAll();
             <label for="progressperc">Progress percentage: </label>
             <input type="text" id="progressperc" name="progressperc"><br>
             <label for="rating10">Rating /10: </label>
-            <input type="text" id="rating10" name="rating10"><br>
+
+            <input type="range" min="1" max="10" value="5" class="slider" id="range">
+
+            <br>
             <label for="coverlink">Link for cover image: </label>
             <input type="text" id="coverlink" name="coverlink"><br>
             <label for="gr-link">Link to goodreads: </label>
             <input type="text" id="gr-link" name="gr-link"><br>
-            <input type="submit" value="Submit">
+            <input type="submit" id="submit" value="Add to Collection" >
         </form>
     </div>
 

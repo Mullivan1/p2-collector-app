@@ -1,3 +1,7 @@
+* {
+    font-family: Calibri, sans-serif;
+}
+
 h1 {
     text-align: center;
 }
@@ -70,4 +74,33 @@ a {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     color: #000000;
+}
+
+#addition {
+    justify-content: center;
+    padding-bottom: 2rem;
+}
+
+input {
+    padding: 0.3rem;
+    margin: 0.2rem 0;
+    border: 0;
+    box-shadow: 0 0 1rem 0.25rem #0000000f;
+    border-radius:10px;
+    width: 100%;
+}
+
+select {
+    width: 100%;
+    padding: 0.3rem;
+    border-radius: 10px;
+}
+
+#submit {
+    margin-top: 2rem;
+}
+
+#range {
+    align-items: center;
+    width: 100%;
 }
