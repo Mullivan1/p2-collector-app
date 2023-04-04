@@ -32,5 +32,48 @@ class BookDAO
         return $books;
     }
 
+    public function add(Book $book):int
+    {
+        $sql = 'INSERT INTO `books` (`title`, `author`, `genre`, `year`, '
+            . '`progressperc`, `rating10`, `coverlink`, `gr-link`) '
+            . 'VALUES (:title, :author, :genre, :year, :progressperc, :rating10, :coverlink, :grLink) ';
+
+        $values = [
+            'title' => $book->getTitle(),
+            'author' => $book->getAuthor(),
+            'genre' => $book->getGenre(),
+            'year' => $book->getYear(),
+            'progressperc' => $book->getProgressPercent(),
+            'rating10' => $book->getRating(),
+            'coverlink' => $book->getCoverLink(),
+            'grLink' => $book->getGrLink()
+        ];
+
+        $query = $this->db->prepare($sql);
+        $query->execute($values);
+
+        return $this->db->lastInsertId(); // Request the ID used and return
+    }
+
+    public function listOfAuthorsAndId(): array
+    {
+        $sql = 'SELECT `authors`.`id`, `name`'
+            . 'FROM `authors`;';
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        return $query->fetchAll();
+    }
+
+    public function listOfGenresAndId(): array
+    {
+        $sql = 'SELECT `genres`.`id`, `genre`'
+            . 'FROM `genres`;';
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        return $query->fetchAll();
+    }
+
 
 }

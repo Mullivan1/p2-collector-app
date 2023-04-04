@@ -34,3 +34,5 @@ function hideIfNull($obj, $string): string
 {
     return ($obj == null) ? '<p class="book-detail"></p>' : $string;
 }
+
+

@@ -4,6 +4,20 @@ require_once 'displayFunction.php';
 
 $bookDAO = new BookDAO();
 
+if (isset($_POST['title'])) {  //more specific conditions, ISSET
+    $new = new Book(
+        $_POST['title'],
+        $_POST['author'],
+        $_POST['genre'],
+        $_POST['year'],
+        $_POST['progressperc'],
+        $_POST['rating10'],
+        $_POST['coverlink'],
+        $_POST['gr-link']
+    );
+    $bookDAO->add($new);
+}
+
 $books = $bookDAO->fetchAll();
 ?>
 
@@ -42,12 +56,52 @@ $books = $bookDAO->fetchAll();
 
 <div class="collection">
 <?php
-    $html = '';
     foreach ($books as $book) {
-        $html = createTile($book);
-        echo $html;
+        echo createTile($book);
     }
 ?>
+    <div class="book">
+        <form action="index.php" method="post">
+            <h2>Input a new book!</h2>
+            <label for="title">Title: </label>
+            <input type="text" id="title" name="title"><br>
+            <!--            Add author selector -->
+            <label for="author">Author: </label>
+<!--            <input list="author">-->
+            <select name="author" id="author">
+            <?php
+            $authors = $bookDAO->listOfAuthorsAndId();
+            foreach ($authors as $author) {
+                echo '<option value="'.$author['id'].'">'.$author['name'].'</option>';
+            }
+            ?>
+<!--            <input type="text" id="author" name="author">-->
+            </select>
+            <br>
+            <label for="year">Year: </label>
+            <input type="text" id="year" name="year"><br>
+
+            <label for="genre">Genre: </label>
+            <select name="genre" id="genre">
+                <?php
+                $genres = $bookDAO->listOfGenresAndId();
+                foreach ($genres as $genre) {
+                    echo '<option value="'.$genre['id'].'">'.$genre['genre'].'</option>';
+                }
+                ?>
+            </select>
+            <br>
+            <label for="progressperc">Progress percentage: </label>
+            <input type="text" id="progressperc" name="progressperc"><br>
+            <label for="rating10">Rating /10: </label>
+            <input type="text" id="rating10" name="rating10"><br>
+            <label for="coverlink">Link for cover image: </label>
+            <input type="text" id="coverlink" name="coverlink"><br>
+            <label for="gr-link">Link to goodreads: </label>
+            <input type="text" id="gr-link" name="gr-link"><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 
 
 </div>
