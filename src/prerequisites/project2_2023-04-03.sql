@@ -23,6 +23,11 @@ SET NAMES utf8mb4;
 # Dump of table authors
 # ------------------------------------------------------------
 
+CREATE OR REPLACE DATABASE ;
+USE ;
+
+DROP TABLE IF EXISTS project2;
+
 CREATE TABLE `authors` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,

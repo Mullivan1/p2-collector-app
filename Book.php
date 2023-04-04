@@ -6,7 +6,7 @@ class Book
     private string $title;
     private string $author;
     private string $genre;
-    private float $year;
+    private int $year;
     private float $progressPercent;
     private float $rating;
     private string $coverLink;
@@ -16,7 +16,7 @@ class Book
             string $title,
             string $author,
             string $genre,
-            float $year,
+            int $year,
             float $progressPercent = null,
             float $rating = null,
             string $coverLink = null,
@@ -103,17 +103,17 @@ class Book
     }
 
     /**
-     * @return float
+     * @return int
      */
-    public function getYear(): float
+    public function getYear(): int
     {
         return $this->year;
     }
 
     /**
-     * @param float $year
+     * @param int $year
      */
-    public function setYear(float $year): void
+    public function setYear(int $year): void
     {
         $this->year = $year;
     }

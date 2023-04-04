@@ -32,7 +32,6 @@ $books = $bookDAO->fetchAll();
     <link rel="shortcut icon" href="images/favicon.png">
     <link rel="apple-touch-icon" href="images/favicon.png">
 
-    <!-- <script defer src="js/index.js"></script> -->
 </head>
 
 <body>
