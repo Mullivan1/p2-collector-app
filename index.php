@@ -1,8 +1,11 @@
 <?php
 require_once 'BookDAO.php';
+require_once 'AuthorDAO.php';
 require_once 'displayFunction.php';
 
 $bookDAO = new BookDAO();
+$authorDAO = new AuthorDAO();
+$genreDAO = new GenreDAO();
 
 
 if (isset($_POST['title'])) {
@@ -69,7 +72,7 @@ $books = $bookDAO->fetchAll();
             <label for="author">Author: (Required)</label>
             <select name="author" id="author" required>
             <?php
-            $authors = $bookDAO->listOfAuthorsAndId();
+            $authors = $authorDAO->listOfAuthorsAndId();
             foreach ($authors as $author) {
                 echo '<option value="'.$author['id'].'">'.$author['name'].'</option>';
             }
@@ -82,7 +85,7 @@ $books = $bookDAO->fetchAll();
             <label for="genre">Genre: </label>
             <select name="genre" id="genre" required>
                 <?php
-                $genres = $bookDAO->listOfGenresAndId();
+                $genres = $genreDAO->listOfGenresAndId();
                 foreach ($genres as $genre) {
                     echo '<option value="'.$genre['id'].'">'.$genre['genre'].'</option>';
                 }

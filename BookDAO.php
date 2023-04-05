@@ -55,25 +55,7 @@ class BookDAO
         return $this->db->lastInsertId(); // Request the ID used and return
     }
 
-    public function listOfAuthorsAndId(): array
-    {
-        $sql = 'SELECT `authors`.`id`, `name`'
-            . 'FROM `authors`;';
-        $query = $this->db->prepare($sql);
-        $query->execute();
 
-        return $query->fetchAll();
-    }
-
-    public function listOfGenresAndId(): array
-    {
-        $sql = 'SELECT `genres`.`id`, `genre`'
-            . 'FROM `genres`;';
-        $query = $this->db->prepare($sql);
-        $query->execute();
-
-        return $query->fetchAll();
-    }
 
 
 }
