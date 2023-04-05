@@ -32,6 +32,16 @@ class BookDAO
         return $books;
     }
 
+    public function deletePig(int $bookId): void
+    {
+        $sql = 'DELETE FROM `books`'
+            . 'WHERE `id` = '.$bookId.';';
+
+
+        $query = $this->db->prepare($sql);
+        $query->execute();
+    }
+
     public function add(Book $book):int
     {
         $sql = 'INSERT INTO `books` (`title`, `author`, `genre`, `year`, '

@@ -23,6 +23,11 @@ if (isset($_POST['title'])) {
     $bookDAO->add($new);
 }
 
+if (isset($_POST['deleteId'])) {
+    echo 'test successful';
+}
+
+
 $books = $bookDAO->fetchAll();
 ?>
 

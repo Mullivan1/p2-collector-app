@@ -22,6 +22,11 @@ function createTile ($book): string
             '<a href="'.$book->getGrLink()
             .'" target="_blank" class="book-detail"><i class="fa-brands fa-goodreads"></i></a>')
         . '</div>'
+        . '<hr class="book-hr" >'
+        . '<div class="buttons">'
+        . '<button type="button" name="edit" class="alter">Edit</button>'
+        . '<button type="button" name="deleteid" class="alter" formmethod="post" formaction="index.php" value="deleteid">Delete</button>'
+        . '</div>'
         . '</div>';
 }
 
