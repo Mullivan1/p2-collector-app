@@ -20,13 +20,13 @@ function createTile ($book): string
         . hideIFNull($book->getRating(), '<p class="book-detail" >Rating: ' . $book->getRating() . '/10</p>')
         . hideIfNull($book->getGrLink(),
             '<a href="'.$book->getGrLink()
-            .' "target="_blank" class="book-detail"><i class="fa-brands fa-goodreads"></i></a>')
+            .'" target="_blank" class="book-detail"><i class="fa-brands fa-goodreads"></i></a>')
         . '</div>'
         . '</div>';
 }
 
 /**
- * @param $var - Book object
+ * @param $obj - Book object
  * @param $string - HTML string
  * @return string
  */
@@ -34,3 +34,13 @@ function hideIfNull($obj, $string): string
 {
     return ($obj == null) ? '<p class="book-detail"></p>' : $string;
 }
+
+/**
+ *
+ */
+function sanitiseUrl($url): string|false
+{
+    return filter_var($url, FILTER_SANITIZE_URL);
+}
+
+
