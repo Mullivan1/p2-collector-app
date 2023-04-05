@@ -1,6 +1,7 @@
 <?php
 require_once 'BookDAO.php';
 require_once 'AuthorDAO.php';
+require_once 'GenreDAO.php';
 require_once 'displayFunction.php';
 
 $bookDAO = new BookDAO();
