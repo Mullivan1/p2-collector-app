@@ -22,8 +22,23 @@ function createTile ($book): string
             '<a href="'.$book->getGrLink()
             .'" target="_blank" class="book-detail"><i class="fa-brands fa-goodreads"></i></a>')
         . '</div>'
+        . '<hr class="book-hr" >'
+        . '<div class="buttons">'
+
+        . '<form action="edit.php" method="post">'
+        . '<input type="submit" title="Edit" value="Edit" class="alter" name="edit">'
+        . '<input type="hidden" value="'.$book->getId().'" name="editid">'
+        . '</form>'
+
+        . '<form action="index.php" method="post">'
+        . '<input type="submit" title="Delete" value="Delete" class="alter" name="delete">'
+        . '<input type="hidden" value="'.$book->getId().'" name="deleteid">'
+        . '</form>'
+
+        . '</div>'
         . '</div>';
 }
+
 
 /**
  * @param $obj - Book object

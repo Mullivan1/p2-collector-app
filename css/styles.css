@@ -78,7 +78,6 @@ a {
 }
 
 #addition {
-    /*width: 90%;*/
     justify-content: center;
     align-content: center;
     padding-bottom: 2rem;
@@ -117,4 +116,15 @@ select {
 form {
     width: 100%;
     padding: 1rem;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 1rem auto;
+    gap: 6rem;
+}
+
+.alter {
+    /*padding:1rem;*/
 }
