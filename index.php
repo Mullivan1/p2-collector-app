@@ -4,6 +4,7 @@ require_once 'displayFunction.php';
 
 $bookDAO = new BookDAO();
 
+
 if (isset($_POST['title'])) {
     $new = new Book(
         $_POST['title'],
@@ -12,10 +13,9 @@ if (isset($_POST['title'])) {
         $_POST['year'],
         $_POST['progressperc'],
         $_POST['rating10'],
-        $_POST['coverlink'],
-        $_POST['gr-link']
+        sanitiseUrl($_POST['coverlink']),
+        sanitiseUrl($_POST['gr-link'])
     );
-    print_r($_POST);
     $bookDAO->add($new);
 }
 
