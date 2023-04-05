@@ -10,17 +10,21 @@ $genreDAO = new GenreDAO();
 
 
 if (isset($_POST['title'])) {
-    $new = new Book(
-        is_string($_POST['title']) ? $_POST['title'] : false,
-        is_int($_POST['author']) ? $_POST['author']: false,
-        is_int($_POST['genre']) ? $_POST['genre'] : false,
-        is_int($_POST['year']) ? $_POST['year'] : false,
-        is_int($_POST['progressperc']) ? $_POST['progressperc'] : false,
-        is_int($_POST['rating10']) ? $_POST['rating10'] : false,
-        sanitiseUrl($_POST['coverlink']),
-        sanitiseUrl($_POST['gr-link'])
-    );
-    $bookDAO->add($new);
+    try {
+        $new = new Book(
+            is_string($_POST['title']) ? $_POST['title'] : false,
+            is_int($_POST['author']) ? $_POST['author'] : false,
+            is_int($_POST['genre']) ? $_POST['genre'] : false,
+            is_int($_POST['year']) ? $_POST['year'] : false,
+            is_int($_POST['progressperc']) ? $_POST['progressperc'] : false,
+            is_int($_POST['rating10']) ? $_POST['rating10'] : false,
+            sanitiseUrl($_POST['coverlink']),
+            sanitiseUrl($_POST['gr-link'])
+        );
+        $bookDAO->add($new);
+    } catch (Exception $e) {
+        echo "There was an error with your inputs";
+    }
 }
 
 if (isset($_POST['deleteId'])) {
