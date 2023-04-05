@@ -45,37 +45,37 @@ class BookDAO
     public function updateBook(int $bookId, Book $new): void
     {
         $sql = 'UPDATE `books`'
-            . ' SET `title` = :title'
-            . ', `author` = :author'
-            . ', `genre` = :genre'
-            . ', `year` = :year'
-            . ', `progressperc` = :progressperc'
-            . ', `rating10` = :rating10'
-            . ', `coverlink` = :coverlink'
-            . ', `grLink` = :grLink'
-            . ' WHERE `id` = :bookId ;';
+            . ' SET `title` = '.$new->getTitle()
+            . ', `author` = '.$new->getAuthor()
+            . ', `genre` = '.$new->getGenre()
+            . ', `year` = '.$new->getYear()
+            . ', `progressperc` = '.$new->getProgressPercent()
+            . ', `rating10` = '.$new->getRating()
+            . ', `coverlink` = '.$new->getCoverLink()
+            . ', `gr-link` = '.$new->getGrLink()
+            . ' WHERE `id` =  '.$bookId.';';
 
-        $values = [
-            'title' => $new->getTitle(),
-            'author' => $new->getAuthor(),
-            'genre' => $new->getGenre(),
-            'year' => $new->getYear(),
-            'progressperc' => $new->getProgressPercent(),
-            'rating10' => $new->getRating(),
-            'coverlink' => $new->getCoverLink(),
-            'grLink' => $new->getGrLink(),
-            'id' => $bookId
-        ];
+//        $values = [
+//            'title' => $new->getTitle(),
+//            'author' => $new->getAuthor(),
+//            'genre' => $new->getGenre(),
+//            'year' => $new->getYear(),
+//            'progressperc' => $new->getProgressPercent(),
+//            'rating10' => $new->getRating(),
+//            'coverlink' => $new->getCoverLink(),
+//            'gr-link' => $new->getGrLink(),
+//            'bookId' => $bookId
+//        ];
 
         $query = $this->db->prepare($sql);
-        $query->execute($values);
+        $query->execute();
     }
 
     public function add(Book $book): int
     {
         $sql = 'INSERT INTO `books` (`title`, `author`, `genre`, `year`, '
             . '`progressperc`, `rating10`, `coverlink`, `gr-link`) '
-            . 'VALUES (:title, :author, :genre, :year, :progressperc, :rating10, :coverlink, :grLink) ';
+            . 'VALUES (:title, :author, :genre, :year, :progressperc, :rating10, :coverlink, :grlink) ';
 
         $values = [
             'title' => $book->getTitle(),
@@ -85,7 +85,7 @@ class BookDAO
             'progressperc' => $book->getProgressPercent(),
             'rating10' => $book->getRating(),
             'coverlink' => $book->getCoverLink(),
-            'grLink' => $book->getGrLink()
+            'grlink' => $book->getGrLink()
         ];
 
         $query = $this->db->prepare($sql);

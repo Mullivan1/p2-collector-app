@@ -8,16 +8,15 @@ $bookDAO = new BookDAO();
 $authorDAO = new AuthorDAO();
 $genreDAO = new GenreDAO();
 
-//print_r($_POST);
-if (isset($_POST['title'])) {
+if (isset($_POST['new'])) {
     try {
         $new = new Book(
             is_string($_POST['title']) ? $_POST['title'] : false,
-            is_int($_POST['author']) ? $_POST['author'] : false,
-            is_int($_POST['genre']) ? $_POST['genre'] : false,
-            is_int($_POST['year']) ? $_POST['year'] : false,
-            is_int($_POST['progressperc']) ? $_POST['progressperc'] : false,
-            is_int($_POST['rating10']) ? $_POST['rating10'] : false,
+            is_int((int)$_POST['author']) ? (int)$_POST['author'] : false,
+            is_int((int)$_POST['genre']) ? (int)$_POST['genre'] : false,
+            is_int((int)$_POST['year']) ? (int)$_POST['year'] : false,
+            is_int((int)$_POST['progressperc']) ? (int)$_POST['progressperc'] : false,
+            is_int((int)$_POST['rating10']) ? (int)$_POST['rating10'] : false,
             sanitiseUrl($_POST['coverlink']),
             sanitiseUrl($_POST['gr-link'])
         );
@@ -32,23 +31,37 @@ if (isset($_POST['deleteid'])) {
 }
 
 if (isset($_POST['editid'])) {
-    try {
-        $newedit = new Book(
-            is_string($_POST['title']) ? $_POST['title'] : false,
-            is_int($_POST['author']) ? $_POST['author'] : false,
-            is_int($_POST['genre']) ? $_POST['genre'] : false,
-            is_int($_POST['year']) ? $_POST['year'] : false,
-            is_int($_POST['progressperc']) ? $_POST['progressperc'] : false,
-            is_int($_POST['rating10']) ? $_POST['rating10'] : false,
-            sanitiseUrl($_POST['coverlink']),
-            sanitiseUrl($_POST['gr-link'])
-        );
-        $bookDAO->updateBook($_POST['editid'], $newedit);
-    } catch (Exception $e) {
-        echo "There was an error with your inputs";
-    }
-}
+    $new = new Book(
+        is_string($_POST['title']) ? $_POST['title'] : false,
+        is_int((int)$_POST['author']) ? (int)$_POST['author'] : false,
+        is_int((int)$_POST['genre']) ? (int)$_POST['genre'] : false,
+        is_int((int)$_POST['year']) ? (int)$_POST['year'] : false,
+        is_int((int)$_POST['progressperc']) ? (int)$_POST['progressperc'] : false,
+        is_int((int)$_POST['rating10']) ? (int)$_POST['rating10'] : false,
+        sanitiseUrl($_POST['coverlink']),
+        sanitiseUrl($_POST['gr-link'])
+    );
+    $bookDAO->add($new);
+    $bookDAO->deleteBook($_POST['editid']);
 
+
+//    Below is the update way
+
+//        $newedit = new Book(
+//            $_POST['title'],
+//            $_POST['author'],
+//            $_POST['genre'],
+//            $_POST['year'],
+//            $_POST['progressperc'],
+//            $_POST['rating10'],
+//            $_POST['coverlink'],
+//            $_POST['gr-link']
+//        );
+//        $bookDAO->updateBook($_POST['editid'], $newedit);
+////    } catch (Exception $e) {
+//        echo "There was an error with your inputs";
+//    }
+}
 
 $books = $bookDAO->fetchAll();
 ?>
@@ -96,7 +109,7 @@ $books = $bookDAO->fetchAll();
         <form action="index.php" method="post">
             <h2>Add a new book!</h2>
             <label for="title">Title: (Required)</label>
-            <input type="text" id="title" name="title" value="test" required><br>
+            <input type="text" id="title" name="title" required><br>
             <label for="author">Author: (Required)</label>
             <select type="text" name="author" id="author" required>
             <?php
@@ -131,6 +144,7 @@ $books = $bookDAO->fetchAll();
             <label for="gr-link">Link to goodreads: </label>
             <input type="text" id="gr-link" name="gr-link"><br>
             <input type="submit" id="submit" value="Add to Collection" >
+            <input type="hidden" value="new" name="new">
         </form>
     </div>
 
