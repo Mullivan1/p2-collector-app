@@ -10,12 +10,12 @@ $genreDAO = new GenreDAO();
 
 if (isset($_POST['title'])) {
     $new = new Book(
-        $_POST['title'],
-        $_POST['author'],
-        $_POST['genre'],
-        $_POST['year'],
-        $_POST['progressperc'],
-        $_POST['rating10'],
+        is_string($_POST['title']) ? $_POST['title'] : false,
+        is_int($_POST['author']) ? $_POST['author']: false,
+        is_int($_POST['genre']) ? $_POST['genre'] : false,
+        is_int($_POST['year']) ? $_POST['year'] : false,
+        is_int($_POST['progressperc']) ? $_POST['progressperc'] : false,
+        is_int($_POST['rating10']) ? $_POST['rating10'] : false,
         sanitiseUrl($_POST['coverlink']),
         sanitiseUrl($_POST['gr-link'])
     );
@@ -70,7 +70,7 @@ $books = $bookDAO->fetchAll();
             <label for="title">Title: (Required)</label>
             <input type="text" id="title" name="title" required><br>
             <label for="author">Author: (Required)</label>
-            <select name="author" id="author" required>
+            <select type="text" name="author" id="author" required>
             <?php
             $authors = $authorDAO->listOfAuthorsAndId();
             foreach ($authors as $author) {

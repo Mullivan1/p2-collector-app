@@ -38,13 +38,9 @@ function hideIfNull($obj, $string): string
 /**
  *
  */
-function sanitiseUrl($url): string
+function sanitiseUrl($url): string|false
 {
-    $url = filter_var($url, FILTER_SANITIZE_URL);
-
-    if (filter_var($url, FILTER_VALIDATE_URL) !== false) {
-        return $url;
-    } else {
-        return "";
-    }
+    return filter_var($url, FILTER_SANITIZE_URL);
 }
+
+
