@@ -4,7 +4,7 @@ require_once 'displayFunction.php';
 
 $bookDAO = new BookDAO();
 
-if (isset($_POST)) {
+if (isset($_POST['title'])) {
     $new = new Book(
         $_POST['title'],
         $_POST['author'],
