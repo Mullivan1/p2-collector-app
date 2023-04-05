@@ -8,7 +8,7 @@ $bookDAO = new BookDAO();
 $authorDAO = new AuthorDAO();
 $genreDAO = new GenreDAO();
 
-print_r($_POST);
+//print_r($_POST);
 if (isset($_POST['title'])) {
     try {
         $new = new Book(
@@ -29,6 +29,24 @@ if (isset($_POST['title'])) {
 
 if (isset($_POST['deleteid'])) {
     $bookDAO->deleteBook($_POST['deleteid']);
+}
+
+if (isset($_POST['editid'])) {
+    try {
+        $newedit = new Book(
+            is_string($_POST['title']) ? $_POST['title'] : false,
+            is_int($_POST['author']) ? $_POST['author'] : false,
+            is_int($_POST['genre']) ? $_POST['genre'] : false,
+            is_int($_POST['year']) ? $_POST['year'] : false,
+            is_int($_POST['progressperc']) ? $_POST['progressperc'] : false,
+            is_int($_POST['rating10']) ? $_POST['rating10'] : false,
+            sanitiseUrl($_POST['coverlink']),
+            sanitiseUrl($_POST['gr-link'])
+        );
+        $bookDAO->updateBook($_POST['editid'], $newedit);
+    } catch (Exception $e) {
+        echo "There was an error with your inputs";
+    }
 }
 
 
@@ -78,7 +96,7 @@ $books = $bookDAO->fetchAll();
         <form action="index.php" method="post">
             <h2>Add a new book!</h2>
             <label for="title">Title: (Required)</label>
-            <input type="text" id="title" name="title" required><br>
+            <input type="text" id="title" name="title" value="test" required><br>
             <label for="author">Author: (Required)</label>
             <select type="text" name="author" id="author" required>
             <?php

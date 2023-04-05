@@ -25,7 +25,7 @@ function createTile ($book): string
         . '<hr class="book-hr" >'
         . '<div class="buttons">'
 
-        . '<form action="index.php" method="post">'
+        . '<form action="edit.php" method="post">'
         . '<input type="submit" title="Edit" value="Edit" class="alter" name="edit">'
         . '<input type="hidden" value="'.$book->getId().'" name="editid">'
         . '</form>'

@@ -42,6 +42,35 @@ class BookDAO
         $query->execute();
     }
 
+    public function updateBook(int $bookId, Book $new): void
+    {
+        $sql = 'UPDATE `books`'
+            . ' SET `title` = :title'
+            . ', `author` = :author'
+            . ', `genre` = :genre'
+            . ', `year` = :year'
+            . ', `progressperc` = :progressperc'
+            . ', `rating10` = :rating10'
+            . ', `coverlink` = :coverlink'
+            . ', `grLink` = :grLink'
+            . ' WHERE `id` = :bookId ;';
+
+        $values = [
+            'title' => $new->getTitle(),
+            'author' => $new->getAuthor(),
+            'genre' => $new->getGenre(),
+            'year' => $new->getYear(),
+            'progressperc' => $new->getProgressPercent(),
+            'rating10' => $new->getRating(),
+            'coverlink' => $new->getCoverLink(),
+            'grLink' => $new->getGrLink(),
+            'id' => $bookId
+        ];
+
+        $query = $this->db->prepare($sql);
+        $query->execute($values);
+    }
+
     public function add(Book $book): int
     {
         $sql = 'INSERT INTO `books` (`title`, `author`, `genre`, `year`, '
@@ -63,6 +92,22 @@ class BookDAO
         $query->execute($values);
 
         return $this->db->lastInsertId(); // Request the ID used and return
+    }
+
+    public function fetch(int $bookId): Book
+    {
+        $sql = 'SELECT `books`.`id`, `title`, `author`, `genre`, `year`, '
+            . '`progressperc`, `rating10`, `coverlink`, `gr-link` '
+            . 'FROM `books` '
+            . 'WHERE `id` = :id; ';
+
+        $values = [':id' => $bookId];
+
+        $query = $this->db->prepare($sql);
+        $query->execute($values);
+        $row = $query->fetch();
+        return new Book($row['title'], $row['author'], $row['genre'], $row['year'],
+            $row['progressperc'], $row['rating10'], $row['coverlink'], $row['gr-link'], $row['id']);
     }
 }
 
