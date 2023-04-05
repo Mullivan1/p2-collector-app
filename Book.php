@@ -98,7 +98,7 @@ class Book
         $this->progressPercent = $progressPercent;
     }
 
-    public function getRating(): ?float
+    public function getRating(): ?int
     {
         return $this->rating;
     }

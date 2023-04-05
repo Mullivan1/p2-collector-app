@@ -22,16 +22,17 @@ h1 {
 }
 
 .book {
-    width: 22rem;
+    width: 24rem;
     background-color: #e8dfc2;
     border: 0.2rem solid #000000;
     display: grid;
     grid-template-rows: 1fr repeat(3, auto);
+    grid-template-columns: 24rem;
 }
 
 .book-image {
     height: 25rem;
-    width: auto;
+    width: minmax(auto, 25rem);
     margin: 1rem auto;
 }
 
@@ -71,8 +72,8 @@ a {
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
     color: #000000;
 }
 
@@ -88,6 +89,12 @@ input {
     box-shadow: 0 0 1rem 0.25rem #0000000f;
     border-radius:10px;
     width: 100%;
+}
+
+label {
+    width: 22rem;
+    margin-top: 0.6rem;
+    display:block;
 }
 
 select {

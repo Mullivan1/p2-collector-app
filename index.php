@@ -15,6 +15,7 @@ if (isset($_POST['title'])) {  //more specific conditions, ISSET
         $_POST['coverlink'],
         $_POST['gr-link']
     );
+    print_r($_POST);
     $bookDAO->add($new);
 }
 
@@ -63,10 +64,10 @@ $books = $bookDAO->fetchAll();
     <div class="book" id="addition">
         <form action="index.php" method="post">
             <h2>Add a new book!</h2>
-            <label for="title">Title: </label>
-            <input type="text" id="title" name="title"><br>
-            <label for="author">Author: </label>
-            <select name="author" id="author">
+            <label for="title">Title: (Required)</label>
+            <input type="text" id="title" name="title" required><br>
+            <label for="author">Author: (Required)</label>
+            <select name="author" id="author" required>
             <?php
             $authors = $bookDAO->listOfAuthorsAndId();
             foreach ($authors as $author) {
@@ -75,11 +76,11 @@ $books = $bookDAO->fetchAll();
             ?>
             </select>
             <br>
-            <label for="year">Year: </label>
-            <input type="text" id="year" name="year"><br>
+            <label for="year">Year: (Required)</label>
+            <input type="number" id="year" name="year" required><br>
 
             <label for="genre">Genre: </label>
-            <select name="genre" id="genre">
+            <select name="genre" id="genre" required>
                 <?php
                 $genres = $bookDAO->listOfGenresAndId();
                 foreach ($genres as $genre) {
@@ -90,9 +91,8 @@ $books = $bookDAO->fetchAll();
             <br>
             <label for="progressperc">Progress percentage: </label>
             <input type="text" id="progressperc" name="progressperc"><br>
-            <label for="rating10">Rating /10: </label>
-
-            <input type="range" min="1" max="10" value="5" class="slider" id="range">
+            <label for="rating10">Rating /10: (Required)</label>
+            <input type="range" min="1" max="10" value="5" class="slider" id="range" name="rating10" required>
 
             <br>
             <label for="coverlink">Link for cover image: </label>
