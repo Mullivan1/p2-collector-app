@@ -24,11 +24,21 @@ function createTile ($book): string
         . '</div>'
         . '<hr class="book-hr" >'
         . '<div class="buttons">'
-        . '<button type="button" name="edit" class="alter">Edit</button>'
-        . '<button type="button" name="deleteid" class="alter" formmethod="post" formaction="index.php" value="deleteid">Delete</button>'
+
+        . '<form action="index.php" method="post">'
+        . '<input type="submit" title="Edit" value="Edit" class="alter" name="edit">'
+        . '<input type="hidden" value="'.$book->getId().'" name="editid">'
+        . '</form>'
+
+        . '<form action="index.php" method="post">'
+        . '<input type="submit" title="Delete" value="Delete" class="alter" name="delete">'
+        . '<input type="hidden" value="'.$book->getId().'" name="deleteid">'
+        . '</form>'
+
         . '</div>'
         . '</div>';
 }
+
 
 /**
  * @param $obj - Book object

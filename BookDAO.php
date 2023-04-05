@@ -27,22 +27,22 @@ class BookDAO
         $books = [];
         foreach ($rows as $row) {
             $books[] = new Book($row['title'], $row['name'], $row['genre'], $row['year'],
-                $row['progressperc'], $row['rating10'], $row['coverlink'], $row['gr-link']);
+                $row['progressperc'], $row['rating10'], $row['coverlink'], $row['gr-link'], $row['id']);
         }
         return $books;
     }
 
-    public function deletePig(int $bookId): void
+    public function deleteBook(int $bookId): void
     {
         $sql = 'DELETE FROM `books`'
-            . 'WHERE `id` = '.$bookId.';';
+            . 'WHERE `id` = ' . $bookId . ';';
 
 
         $query = $this->db->prepare($sql);
         $query->execute();
     }
 
-    public function add(Book $book):int
+    public function add(Book $book): int
     {
         $sql = 'INSERT INTO `books` (`title`, `author`, `genre`, `year`, '
             . '`progressperc`, `rating10`, `coverlink`, `gr-link`) '
@@ -64,8 +64,5 @@ class BookDAO
 
         return $this->db->lastInsertId(); // Request the ID used and return
     }
-
-
-
-
 }
+

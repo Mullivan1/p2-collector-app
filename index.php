@@ -8,7 +8,7 @@ $bookDAO = new BookDAO();
 $authorDAO = new AuthorDAO();
 $genreDAO = new GenreDAO();
 
-
+print_r($_POST);
 if (isset($_POST['title'])) {
     try {
         $new = new Book(
@@ -27,8 +27,8 @@ if (isset($_POST['title'])) {
     }
 }
 
-if (isset($_POST['deleteId'])) {
-    echo 'test successful';
+if (isset($_POST['deleteid'])) {
+    $bookDAO->deleteBook($_POST['deleteid']);
 }
 
 
