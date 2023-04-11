@@ -84,7 +84,7 @@ if (isset($_POST['editid'])) {
             <label for="progressperc">Progress percentage: </label>
             <input type="text" id="progressperc" value="<?php echo $old->getProgressPercent() ?>" name="progressperc"><br>
             <label for="rating10">Rating /10: (Required)</label>
-            <input type="range" min="1" max="10" value="<?php echo $old->getRating() ?>" class="slider" id="range" name="rating10" required>
+            <input type="range" min="0" max="10" value="<?php echo $old->getRating() ?>" class="slider" id="range" name="rating10" required>
 
             <br>
             <label for="coverlink">Link for cover image: </label>
